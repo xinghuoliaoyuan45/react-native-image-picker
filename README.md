@@ -1,11 +1,10 @@
 *解决 react-native-imageandroid问题，和ios统一*
 
-- imageId
-     图片id 扫描sd卡后才有的
-- imagePath 原图地址
-- lastModified 最后修改时间
-- width 图片宽
-- height 图片高
+- *imageId 图片id*
+- *lastModified 最后修改时间*
+- uri 原图地址(通用)
+- width 图片宽(通用)
+- height 图片高(通用)
 
 
 传入

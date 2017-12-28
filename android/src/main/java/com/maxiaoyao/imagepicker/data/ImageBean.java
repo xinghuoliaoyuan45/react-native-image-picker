@@ -3,6 +3,8 @@ package com.maxiaoyao.imagepicker.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Function:图片实体类
  */
@@ -15,6 +17,7 @@ public class ImageBean implements Parcelable
     /**
      * 原图地址
      */
+    @SerializedName("uri")
     private String imagePath;
     /**
      * 最后修改时间
