@@ -31,11 +31,11 @@ public class PictureSelectNaviteModule extends ReactContextBaseJavaModule  {
 
     @Override
     public String getName() {
-        return "AndroidPictureSelect";
+        return "ImagePickerManager";
     }//返回的这个名字是必须的，在rn代码中需要这个名字来调用该类的方法。
 
     @ReactMethod
-    public void startPictureSelect(final ReadableMap options,final Callback func){
+    public void showImagePicker(final ReadableMap options,final Callback func){
         parseOptions(options);
 
         if(path == null || path.length() <= 0){

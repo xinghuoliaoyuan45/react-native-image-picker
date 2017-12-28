@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:background="@color/imagepicker_statusbar"
     android:fitsSystemWindows="true"
-    tools:context="com.lwkandroid.imagepicker.ui.grid.view.ImageDataActivity">
+    tools:context="com.maxiaoyao.imagepicker.ui.grid.view.ImageDataActivity">
 
-    <com.lwkandroid.imagepicker.widget.ImagePickerActionBar
+    <com.maxiaoyao.imagepicker.widget.ImagePickerActionBar
         android:id="@+id/acb_image_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

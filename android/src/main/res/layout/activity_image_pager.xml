@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:fitsSystemWindows="true"
-    tools:context="com.lwkandroid.imagepicker.ui.pager.view.ImagePagerActivity">
+    tools:context="com.maxiaoyao.imagepicker.ui.pager.view.ImagePagerActivity">
 
-    <com.lwkandroid.imagepicker.widget.ImagePickerViewPager
+    <com.maxiaoyao.imagepicker.widget.ImagePickerViewPager
         android:id="@+id/vp_image_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.lwkandroid.imagepicker.widget.ImagePickerActionBar
+    <com.maxiaoyao.imagepicker.widget.ImagePickerActionBar
         android:id="@+id/acb_image_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

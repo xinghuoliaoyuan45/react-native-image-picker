@@ -43,10 +43,6 @@ export default class App extends React.Component {
       }
       else {
         let source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.setState({
           avatarSource: source
         });
@@ -92,13 +88,7 @@ export default class App extends React.Component {
           }
           </View>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
-          <View style={[styles.avatar, styles.avatarContainer]}>
-            <Text>Select a Video</Text>
-          </View>
-        </TouchableOpacity>
-
+        
         { this.state.videoSource &&
           <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
         }
