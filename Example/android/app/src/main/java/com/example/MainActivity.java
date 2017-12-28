@@ -3,7 +3,13 @@ package com.example;
 import android.content.Intent;
 
 import com.facebook.react.ReactActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.maxiaoyao.imagepicker.ImagePicker;
+import com.maxiaoyao.imagepicker.data.ImageBean;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class MainActivity extends ReactActivity {
