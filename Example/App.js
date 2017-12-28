@@ -26,7 +26,7 @@ export default class App extends React.Component {
       storageOptions: {
         skipBackup: true
       },
-      androidMaxNum:2
+      androidMaxNum:1
     };
 
     ImagePicker.showImagePicker(options, (response) => {
@@ -49,35 +49,7 @@ export default class App extends React.Component {
       }
     });
   }
-
-  selectVideoTapped() {
-    const options = {
-      title: 'Video Picker',
-      takePhotoButtonTitle: 'Take Video...',
-      mediaType: 'video',
-      videoQuality: 'medium'
-    };
-
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled video picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        this.setState({
-          videoSource: response.uri
-        });
-      }
-    });
-  }
-
+  
   render() {
     return (
       <View style={styles.container}>
