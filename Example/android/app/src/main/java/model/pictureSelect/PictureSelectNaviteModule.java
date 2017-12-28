@@ -1,6 +1,7 @@
 package model.pictureSelect;
 
 import android.os.Environment;
+
 import com.example.MainActivity;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -16,14 +17,13 @@ import com.maxiaoyao.imagepicker.utils.GlideImagePickerDisplayer;
 import java.io.File;
 
 
-public class PictureSelectNaviteModule extends ReactContextBaseJavaModule  {
+public class PictureSelectNaviteModule extends ReactContextBaseJavaModule {
 
-     private String path = "";
-     private ImagePickType PickType;
+    private String path = "";
+    private ImagePickType PickType;
     private final int REQUEST_CODE = 111;
     private int maxNum = 1;
-    private  int imagePickType = 3;
-
+    private int imagePickType = 3;
 
     public PictureSelectNaviteModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -35,12 +35,15 @@ public class PictureSelectNaviteModule extends ReactContextBaseJavaModule  {
     }//返回的这个名字是必须的，在rn代码中需要这个名字来调用该类的方法。
 
     @ReactMethod
-    public void showImagePicker(final ReadableMap options,final Callback func){
-        parseOptions(options);
-
-        if(path == null || path.length() <= 0){
-
-            path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/image/headportrait";
+    public void showImagePicker(final ReadableMap options, final Callback func) {
+        if (options.hasKey("androidMaxNum")) {
+            this.maxNum = options.getInt("androidMaxNum");
+        }
+        if (options.hasKey("androidImagePickType")) {
+            this.imagePickType = options.getInt("androidImagePickType");
+        }
+        if (path == null || path.length() <= 0) {
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/image/headportrait";
             //新建一个File，传入文件夹目录
             File file = new File(path);
             //判断文件夹是否存在，如果不存在就创建，否则不创建
@@ -48,25 +51,25 @@ public class PictureSelectNaviteModule extends ReactContextBaseJavaModule  {
                 file.mkdirs();
             }
         }
-        if(maxNum==0){
-           maxNum=1;
+        if (maxNum == 0) {
+            maxNum = 1;
         }
-        switch (imagePickType){
+        switch (imagePickType) {
             case 1:
-                PickType=ImagePickType.ONLY_CAMERA;//只拍照
+                PickType = ImagePickType.ONLY_CAMERA;//只拍照
                 break;
             case 2:
-                PickType=ImagePickType.SINGLE;//单选
+                PickType = ImagePickType.SINGLE;//单选
                 break;
             case 3:
-                PickType=ImagePickType.MULTI;//多选
+                PickType = ImagePickType.MULTI;//多选
                 break;
             default:
-                PickType=ImagePickType.ONLY_CAMERA;
+                PickType = ImagePickType.ONLY_CAMERA;
                 break;
 
         }
-        ImagePickerCropParams ImagePickerCropParams=new ImagePickerCropParams(1, 1, 0, 0);
+        ImagePickerCropParams ImagePickerCropParams = new ImagePickerCropParams(1, 1, 0, 0);
         try {
 
             new ImagePicker()
@@ -84,18 +87,5 @@ public class PictureSelectNaviteModule extends ReactContextBaseJavaModule  {
             func.invoke(e.getMessage());
             e.printStackTrace();
         }
-
     }
-
-    private void parseOptions(ReadableMap options) {
-
-        if (options.hasKey("'androidMaxNum")) {
-            this.maxNum = options.getInt("androidmaxNum");
-        }
-        if (options.hasKey("'androidImagePickType")) {
-            this.imagePickType = options.getInt("androidImagePickType");
-        }
-    }
-
-
 }

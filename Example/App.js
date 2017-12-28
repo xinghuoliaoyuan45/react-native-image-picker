@@ -26,7 +26,7 @@ export default class App extends React.Component {
       storageOptions: {
         skipBackup: true
       },
-      androidMaxNum:1
+      androidMaxNum:2
     };
 
     ImagePicker.showImagePicker(options, (response) => {
