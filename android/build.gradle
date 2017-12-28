@@ -10,6 +10,10 @@ def computeVersionName() {
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 
     dependencies {
@@ -42,18 +46,18 @@ repositories {
     maven {
         url "$projectDir/../../react-native/android"
     }
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
 }
 
 dependencies {
     compile "com.facebook.react:react-native:+"  // From node_modules
-    
-    testCompile "junit:junit:4.10"
-    testCompile "org.assertj:assertj-core:1.7.0"
-    testCompile "org.robolectric:robolectric:3.3.2"
+    compile('com.github.bumptech.glide:glide:4.1.1') {
+        exclude(group: 'com.google.android', module: 'support-v4')
+    }
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.google.code.gson:gson:2.2.4'
 
-    testCompile "org.easytesting:fest-assert-core:${FEST_ASSERT_CORE_VERSION}"
-    testCompile "org.powermock:powermock-api-mockito:${POWERMOCK_VERSION}"
-    testCompile "org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}"
-    testCompile "org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}"
-    testCompile "org.mockito:mockito-core:${MOCKITO_CORE_VERSION}"
 }
