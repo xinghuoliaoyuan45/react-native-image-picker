@@ -7,17 +7,18 @@ import {
   PixelRatio,
   TouchableOpacity,
   Image,
+  Platform
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-picker';
 
 export default class App extends React.Component {
-
+  
   state = {
     avatarSource: null,
     videoSource: null
   };
-
+  
   selectPhotoTapped() {
     const options = {
       quality: 1.0,
@@ -28,21 +29,20 @@ export default class App extends React.Component {
       },
       androidMaxNum:1
     };
-
+    
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-
       if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
+        return
       }
       else {
-        let source = { uri: response.uri };
+        let source
+        if(Platform.OS=='android'){
+          responseAndroidJson = JSON.parse(response)
+          source="file://"+responseAndroidJson[0].uri
+        }else{
+          source=response.uri
+        }
         this.setState({
           avatarSource: source
         });
@@ -55,19 +55,19 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
           <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-          { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
-            <Image style={styles.avatar} source={this.state.avatarSource} />
-          }
+            { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+              <Image style={styles.avatar} source={{uri:this.state.avatarSource}} />
+            }
           </View>
         </TouchableOpacity>
         
         { this.state.videoSource &&
-          <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
+        <Text style={{margin: 8, textAlign: 'center'}}>{this.state.videoSource}</Text>
         }
       </View>
     );
   }
-
+  
 }
 
 const styles = StyleSheet.create({
